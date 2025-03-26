@@ -8,5 +8,5 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
   },
-   "include": ["Reposit/src/**/*"]
+  "include": ["src"]
 }
