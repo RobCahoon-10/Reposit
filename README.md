@@ -18,7 +18,7 @@ git clone https://github.com/RobCahoon-10/Reposit.git
 - Install dependencies
 
 ```
-cd <project_name>
+cd ./package-dir
 npm install
 ```
 
