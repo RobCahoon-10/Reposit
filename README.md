@@ -12,7 +12,7 @@ This project is built using TypeScript and Node.js. The structure of the project
 - Clone the repository
 
 ```
-git clone  <git lab template url> <project_name>
+git clone https://github.com/RobCahoon-10/Reposit.git
 ```
 
 - Install dependencies
