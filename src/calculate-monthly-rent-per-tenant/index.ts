@@ -22,7 +22,7 @@ export const calculateMonthlyRentPerTenant = async (
     throw new Error("No tenants found for the property");
   }
 
-  const totalMonthlyRentPence = parseInt(property.monthlyRentPence, 10);
+  const totalMonthlyRentPence = Number(property.monthlyRentPence);
 
   const monthlyRentPerTenantPence = totalMonthlyRentPence / tenants.length;
 

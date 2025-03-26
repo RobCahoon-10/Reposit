@@ -4,7 +4,6 @@ import { describe, it, beforeEach, afterEach } from "node:test";
 import sinon from "sinon";
 import { PropertyData } from "../types";
 
-// Mock readCSV function
 const mockReadCSV = sinon.stub();
 mockReadCSV
   .withArgs("data/technical-challenge-properties-september-2024.csv")
@@ -13,7 +12,7 @@ mockReadCSV
       id: "1",
       postcode: "CF10 1AA",
       address: "123 Cardiff St",
-      monthlyRentPence: "100000",
+      monthlyRentPence: 100000,
       region: "wales",
       capacity: 2,
       tenancyEndDate: "2025-09-30",
@@ -22,7 +21,7 @@ mockReadCSV
       id: "2",
       postcode: "INVALID",
       address: "456 London Rd",
-      monthlyRentPence: "90000",
+      monthlyRentPence: 90000,
       region: "england",
       capacity: 1,
       tenancyEndDate: "2025-09-30",
@@ -31,7 +30,7 @@ mockReadCSV
       id: "3",
       postcode: "EH1 1AA",
       address: "789 Edinburgh Ave",
-      monthlyRentPence: "80000",
+      monthlyRentPence: 80000,
       region: "scotland",
       capacity: 2,
       tenancyEndDate: "2025-09-30",
@@ -40,20 +39,18 @@ mockReadCSV
       id: "4",
       postcode: "INVALID",
       address: "321 Cardiff St",
-      monthlyRentPence: "110000",
+      monthlyRentPence: 110000,
       region: "wales",
       capacity: 3,
       tenancyEndDate: "2025-09-30",
     },
   ] as PropertyData[]);
 
-// Mock isValidUKPostcode function
 const mockIsValidUKPostcode = sinon.stub();
 mockIsValidUKPostcode.withArgs("CF10 1AA").returns(true);
 mockIsValidUKPostcode.withArgs("INVALID").returns(false);
 mockIsValidUKPostcode.withArgs("EH1 1AA").returns(true);
 
-// Use proxyquire to inject the mocks
 const { findInvalidPostcodes } = proxyquire("./", {
   "../utils/csv-reader": { readCSV: mockReadCSV },
   "../utils/is-valid-uk-postcode": { isValidUKPostcode: mockIsValidUKPostcode },

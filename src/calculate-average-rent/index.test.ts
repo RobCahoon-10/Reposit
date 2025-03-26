@@ -5,9 +5,9 @@ import sinon from "sinon";
 import { PropertyData, Region } from "../types";
 
 const mockReadCSV = sinon.stub().resolves([
-  { region: "wales", monthlyRentPence: "100000" },
-  { region: "wales", monthlyRentPence: "120000" },
-  { region: "england", monthlyRentPence: "90000" },
+  { region: "wales", monthlyRentPence: 100000 },
+  { region: "wales", monthlyRentPence: 120000 },
+  { region: "england", monthlyRentPence: 90000 },
 ] as PropertyData[]);
 
 const { calculateAverageRent } = proxyquire("./", {

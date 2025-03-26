@@ -2,7 +2,7 @@ export type PropertyData = {
   id: string;
   postcode: string;
   address: string;
-  monthlyRentPence: string;
+  monthlyRentPence: number;
   region: string;
   capacity: number;
   tenancyEndDate: string;

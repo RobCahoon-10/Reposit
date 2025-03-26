@@ -41,7 +41,6 @@ export const getPropertyStatus = async (
   return "UNKNOWN_STATUS";
 };
 
-// Get command line arguments
 if (require.main === module) {
   const args = process.argv.slice(2);
   const propertyId = args[0];

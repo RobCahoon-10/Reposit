@@ -11,10 +11,12 @@ export const calculateAverageRent = async (
   const filteredResults = results.filter(
     (item) => item.region.toLowerCase() === targetRegion.toLowerCase()
   );
+
   const totalRent = filteredResults.reduce(
-    (sum, item) => sum + parseInt(item.monthlyRentPence, 10),
+    (sum, item) => sum + Number(item.monthlyRentPence),
     0
   );
+
   const averageRent = filteredResults.length
     ? totalRent / filteredResults.length
     : 0;
@@ -26,7 +28,6 @@ export const calculateAverageRent = async (
   );
 };
 
-// Get command line arguments
 if (require.main === module) {
   const args = process.argv.slice(2);
   const targetRegion = args[0] as Region;
