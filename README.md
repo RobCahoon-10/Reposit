@@ -36,7 +36,7 @@ I have added a couple of ways to test:
 
 `npm test` - will run all the unit tests
 
-You can also run the test indivdually in the command line, for example:
+You can also test indivdually in the command line, for example:
 
 ```
 ts-node src/calculate-average-rent wales
