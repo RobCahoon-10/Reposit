@@ -1,6 +1,6 @@
 import { strict as assert } from "assert";
 import { describe, it } from "node:test";
-import { isValidUKPostcode } from ".";
+import { isValidUKPostcode } from "./is-valid-uk-postcode";
 
 describe("isValidUKPostcode", () => {
   it("should return true for valid UK postcodes", () => {

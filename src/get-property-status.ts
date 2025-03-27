@@ -1,22 +1,44 @@
-import { readCSV } from "../utils/csv-reader";
-import { PropertyData, TenantsData } from "../types";
+import { readCSV } from "./utils/csv-reader";
+import type { PropertyData, TenantsData } from "./types";
 
 export const getPropertyStatus = async (
   propertyId: string
 ): Promise<string> => {
-  const propertyData: PropertyData[] = await readCSV<PropertyData>(
+  const propertyData = await readCSV<PropertyData>(
     "data/technical-challenge-properties-september-2024.csv"
   );
-  const tenantsData: TenantsData[] = await readCSV<TenantsData>(
+  const tenantsData = await readCSV<TenantsData>(
     "data/technical-challenge-tenants-september-2024.csv"
   );
 
-  const property = propertyData.find((p) => p.id === propertyId);
-  if (!property) {
+  const selectedProperty = findPropertyById(propertyData, propertyId);
+  if (!selectedProperty) {
     throw new Error("Property not found");
   }
 
-  const tenants = tenantsData.filter((t) => t.propertyId === propertyId);
+  const tenantsInProperty = findTenantsByPropertyId(tenantsData, propertyId);
+
+  return determinePropertyStatus(selectedProperty, tenantsInProperty);
+};
+
+const findPropertyById = (
+  propertyData: PropertyData[],
+  propertyId: string
+): PropertyData | undefined => {
+  return propertyData.find((property) => property.id === propertyId);
+};
+
+const findTenantsByPropertyId = (
+  tenantsData: TenantsData[],
+  propertyId: string
+): TenantsData[] => {
+  return tenantsData.filter((tenants) => tenants.propertyId === propertyId);
+};
+
+const determinePropertyStatus = (
+  property: PropertyData,
+  tenants: TenantsData[]
+): string => {
   const tenantCount = tenants.length;
   const capacity = property.capacity;
   const tenancyEndDate = new Date(property.tenancyEndDate);

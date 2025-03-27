@@ -2,7 +2,7 @@ import proxyquire from "proxyquire";
 import { strict as assert } from "assert";
 import { describe, it, beforeEach, afterEach } from "node:test";
 import sinon from "sinon";
-import { PropertyData } from "../types";
+import type { PropertyData } from "./types";
 
 const mockReadCSV = sinon.stub();
 mockReadCSV
@@ -51,9 +51,9 @@ mockIsValidUKPostcode.withArgs("CF10 1AA").returns(true);
 mockIsValidUKPostcode.withArgs("INVALID").returns(false);
 mockIsValidUKPostcode.withArgs("EH1 1AA").returns(true);
 
-const { findInvalidPostcodes } = proxyquire("./", {
-  "../utils/csv-reader": { readCSV: mockReadCSV },
-  "../utils/is-valid-uk-postcode": { isValidUKPostcode: mockIsValidUKPostcode },
+const { findInvalidPostcodes } = proxyquire("./find-invalid-postcodes", {
+  "./utils/csv-reader": { readCSV: mockReadCSV },
+  "./utils/is-valid-uk-postcode": { isValidUKPostcode: mockIsValidUKPostcode },
 });
 
 describe("findInvalidPostcodes", () => {

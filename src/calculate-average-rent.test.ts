@@ -2,7 +2,7 @@ import proxyquire from "proxyquire";
 import { strict as assert } from "assert";
 import { describe, it, beforeEach, afterEach } from "node:test";
 import sinon from "sinon";
-import { PropertyData, Region } from "../types";
+import type { PropertyData, Region } from "./types";
 
 const mockReadCSV = sinon.stub().resolves([
   { region: "wales", monthlyRentPence: 100000 },
@@ -10,8 +10,8 @@ const mockReadCSV = sinon.stub().resolves([
   { region: "england", monthlyRentPence: 90000 },
 ] as PropertyData[]);
 
-const { calculateAverageRent } = proxyquire("./", {
-  "../utils/csv-reader": { readCSV: mockReadCSV },
+const { calculateAverageRent } = proxyquire("./calculate-average-rent", {
+  "./utils/csv-reader": { readCSV: mockReadCSV },
 });
 
 describe("calculateAverageRent", () => {

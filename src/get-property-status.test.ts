@@ -2,7 +2,7 @@ import proxyquire from "proxyquire";
 import { strict as assert } from "assert";
 import { describe, it, beforeEach, afterEach } from "node:test";
 import sinon from "sinon";
-import { PropertyData, TenantsData } from "../types";
+import type { PropertyData, TenantsData } from "./types";
 
 const mockReadCSV = sinon.stub();
 mockReadCSV
@@ -57,8 +57,8 @@ mockReadCSV
     { id: "8", propertyId: "4", name: "Tenant G" },
   ] as TenantsData[]);
 
-const { getPropertyStatus } = proxyquire("./", {
-  "../utils/csv-reader": { readCSV: mockReadCSV },
+const { getPropertyStatus } = proxyquire("./get-property-status", {
+  "./utils/csv-reader": { readCSV: mockReadCSV },
 });
 
 describe("getPropertyStatus", () => {

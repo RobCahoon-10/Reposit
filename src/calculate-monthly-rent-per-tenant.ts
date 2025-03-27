@@ -1,5 +1,5 @@
-import { readCSV } from "../utils/csv-reader";
-import { PropertyData, TenantsData } from "../types";
+import { readCSV } from "./utils/csv-reader";
+import type { PropertyData, TenantsData } from "./types";
 
 export const calculateMonthlyRentPerTenant = async (
   propertyId: string,
@@ -12,19 +12,24 @@ export const calculateMonthlyRentPerTenant = async (
     "data/technical-challenge-tenants-september-2024.csv"
   );
 
-  const property = propertyData.find((p) => p.id === propertyId);
-  if (!property) {
+  const selectedProperty = propertyData.find(
+    (property) => property.id === propertyId
+  );
+  if (!selectedProperty) {
     throw new Error("Property not found");
   }
 
-  const tenants = tenantsData.filter((t) => t.propertyId === propertyId);
-  if (tenants.length === 0) {
+  const tenantsInProperty = tenantsData.filter(
+    (tenants) => tenants.propertyId === propertyId
+  );
+  if (tenantsInProperty.length === 0) {
     throw new Error("No tenants found for the property");
   }
 
-  const totalMonthlyRentPence = Number(property.monthlyRentPence);
+  const totalMonthlyRentPence = Number(selectedProperty.monthlyRentPence);
 
-  const monthlyRentPerTenantPence = totalMonthlyRentPence / tenants.length;
+  const monthlyRentPerTenantPence =
+    totalMonthlyRentPence / tenantsInProperty.length;
 
   let rentPerTenant;
   if (currency === "pounds") {

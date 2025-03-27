@@ -1,6 +1,6 @@
-import { readCSV } from "../utils/csv-reader";
-import { PropertyData } from "../types";
-import { isValidUKPostcode } from "../utils/is-valid-uk-postcode";
+import { readCSV } from "./utils/csv-reader";
+import type { PropertyData } from "./types";
+import { isValidUKPostcode } from "./utils/is-valid-uk-postcode";
 
 export const findInvalidPostcodes = async () => {
   const data: PropertyData[] = await readCSV<PropertyData>(

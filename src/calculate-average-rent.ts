@@ -1,5 +1,5 @@
-import { readCSV } from "../utils/csv-reader";
-import { PropertyData, Region } from "../types";
+import { readCSV } from "./utils/csv-reader";
+import type { PropertyData, Region } from "./types";
 
 export const calculateAverageRent = async (
   targetRegion: Region

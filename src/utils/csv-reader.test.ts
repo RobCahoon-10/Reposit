@@ -2,7 +2,7 @@ import { strict as assert } from "assert";
 import { describe, it, beforeEach, afterEach } from "node:test";
 import sinon from "sinon";
 import fs from "fs";
-import { readCSV } from ".";
+import { readCSV } from "./csv-reader";
 
 describe("readCSV", () => {
   let sandbox: sinon.SinonSandbox;
